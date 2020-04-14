@@ -1,4 +1,4 @@
-name: 'GitHub Action for ktint'
+name: 'GitHub Action for ktlint'
 description: 'A tool to enforce Kotlin style and conventions'
 author: 'Yutaro Muta'
 inputs:
