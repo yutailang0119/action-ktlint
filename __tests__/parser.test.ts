@@ -8,7 +8,7 @@ test('test parse', () => {
       <error line="3" column="1" severity="error" message="Unused import" source="no-unused-imports"/>
     </file>
     <file name="Bar.kts">
-      <error line="45" column="1" severity="error" message="Needless blank line(s)" source="no-consecutive-blank-lines"/>
+      <error line="22" column="1" severity="error" message="Needless blank line(s)" source="no-consecutive-blank-lines"/>
     </file>
   </checkstyle>`
 
@@ -22,7 +22,7 @@ test('test parse', () => {
   const annotation2 = new Annotation(
     'error',
     'Bar.kts',
-    45,
+    22,
     1,
     'Needless blank line(s)'
   )
