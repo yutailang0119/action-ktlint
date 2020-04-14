@@ -1,10 +1,10 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'GitHub Action for ktint'
+description: 'A tool to enforce Kotlin style and conventions'
+author: 'Yutaro Muta'
 inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'default value if applicable'
+  xml_path:
+    description: 'The file path of the XML lint report'
+    required: true
 runs:
   using: 'node12'
   main: 'dist/index.js'
