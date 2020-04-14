@@ -1,16 +1,14 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
+import fs from 'fs'
+import {parseXml} from './parser'
+import {echoMessages} from './command'
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`)
-
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
-
-    core.setOutput('time', new Date().toTimeString())
+    const xmlPath = core.getInput('xml_path', {required: true})
+    const xml = fs.readFileSync(xmlPath, 'utf-8')
+    const annotations = await parseXml(xml)
+    await echoMessages(annotations)
   } catch (error) {
     core.setFailed(error.message)
   }
