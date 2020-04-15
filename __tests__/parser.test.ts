@@ -12,13 +12,7 @@ test('test parse', () => {
     </file>
   </checkstyle>`
 
-  const annotation1 = new Annotation(
-    'error',
-    'Foo.kt',
-    3,
-    1,
-    'Unused import'
-  )
+  const annotation1 = new Annotation('error', 'Foo.kt', 3, 1, 'Unused import')
   const annotation2 = new Annotation(
     'error',
     'Bar.kts',
