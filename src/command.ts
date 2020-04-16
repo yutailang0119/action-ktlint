@@ -5,9 +5,9 @@ export const commandProperties = (
   annotation: Annotation
 ): {[key: string]: string} => {
   return {
-    file: annotation.path,
     line: `${annotation.line}`,
-    col: `${annotation.column}`
+    col: `${annotation.column}`,
+    file: annotation.path
   }
 }
 
