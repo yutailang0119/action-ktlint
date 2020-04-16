@@ -1,9 +1,7 @@
 import * as command from '@actions/core/lib/command'
 import {Annotation} from './annotation'
 
-export const commandProperties = (
-  annotation: Annotation
-): {[key: string]: string} => {
+const commandProperties = (annotation: Annotation): {[key: string]: string} => {
   return {
     file: annotation.path,
     line: `${annotation.line}`,
