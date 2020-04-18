@@ -23,8 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-        brew install ktlint
+      - run: brew install ktlint
       - name: run ktlint
         run: |
           ktlint --reporter=checkstyle,output=build/ktlint-report-in-checkstyle-format.xml
