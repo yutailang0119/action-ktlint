@@ -15,7 +15,7 @@ on:
   pull_request:
     paths:
       - .github/workflows/ktlint.yml
-      - 'src/**/*.k'
+      - 'src/**/*.kt'
       - '**.kts'
 
 jobs:
