@@ -47,15 +47,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.echoMessages = void 0;
 const command = __importStar(__nccwpck_require__(7351));
@@ -66,12 +57,10 @@ const commandProperties = (annotation) => {
         col: `${annotation.column}`
     };
 };
-function echoMessages(annotations) {
-    return __awaiter(this, void 0, void 0, function* () {
-        for (const annotation of annotations) {
-            command.issueCommand(annotation.severityLevel, commandProperties(annotation), annotation.message);
-        }
-    });
+async function echoMessages(annotations) {
+    for (const annotation of annotations) {
+        command.issueCommand(annotation.severityLevel, commandProperties(annotation), annotation.message);
+    }
 }
 exports.echoMessages = echoMessages;
 
@@ -102,15 +91,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -119,18 +99,16 @@ const core = __importStar(__nccwpck_require__(2186));
 const fs_1 = __importDefault(__nccwpck_require__(5747));
 const parser_1 = __nccwpck_require__(267);
 const command_1 = __nccwpck_require__(524);
-function run() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const xmlPath = core.getInput('xml_path', { required: true });
-            const xml = fs_1.default.readFileSync(xmlPath, 'utf-8');
-            const annotations = yield parser_1.parseXml(xml);
-            yield command_1.echoMessages(annotations);
-        }
-        catch (error) {
-            core.setFailed(error.message);
-        }
-    });
+async function run() {
+    try {
+        const xmlPath = core.getInput('xml_path', { required: true });
+        const xml = fs_1.default.readFileSync(xmlPath, 'utf-8');
+        const annotations = await parser_1.parseXml(xml);
+        await command_1.echoMessages(annotations);
+    }
+    catch (error) {
+        core.setFailed(error.message);
+    }
 }
 run();
 
@@ -161,41 +139,30 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.parseXml = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const xml2js = __importStar(__nccwpck_require__(6189));
 const Annotation_1 = __nccwpck_require__(7548);
-function parseXml(reportXml) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const parser = new xml2js.Parser();
-        const xml = yield parser.parseStringPromise(reportXml);
-        return new Promise(resolve => {
-            try {
-                const annotations = [];
-                for (const fileElement of xml.checkstyle.file) {
-                    const file = fileElement.$;
-                    for (const errorElement of fileElement.error) {
-                        const error = errorElement.$;
-                        const annotation = new Annotation_1.Annotation(error.severity, file.name, parseInt(error.line), parseInt(error.column), error.message);
-                        annotations.push(annotation);
-                    }
+async function parseXml(reportXml) {
+    const parser = new xml2js.Parser();
+    const xml = await parser.parseStringPromise(reportXml);
+    return new Promise(resolve => {
+        try {
+            const annotations = [];
+            for (const fileElement of xml.checkstyle.file) {
+                const file = fileElement.$;
+                for (const errorElement of fileElement.error) {
+                    const error = errorElement.$;
+                    const annotation = new Annotation_1.Annotation(error.severity, file.name, parseInt(error.line), parseInt(error.column), error.message);
+                    annotations.push(annotation);
                 }
-                resolve(annotations);
             }
-            catch (error) {
-                core.debug(`failed to read ${error}`);
-            }
-        });
+            resolve(annotations);
+        }
+        catch (error) {
+            core.debug(`failed to read ${error}`);
+        }
     });
 }
 exports.parseXml = parseXml;
