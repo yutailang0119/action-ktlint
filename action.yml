@@ -5,6 +5,9 @@ inputs:
   xml_path:
     description: 'The file path of the XML lint report'
     required: true
+  follow-symbolic-links:
+     description: 'Indicates whether to follow symbolic links'
+     default: true
 runs:
   using: 'node12'
   main: 'dist/index.js'
