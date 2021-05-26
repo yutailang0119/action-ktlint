@@ -26,10 +26,10 @@ jobs:
       - run: brew install ktlint
       - name: run ktlint
         run: |
-          ktlint --reporter=checkstyle,output=build/ktlint-report-in-checkstyle-format.xml
+          ktlint --reporter=checkstyle,output=build/ktlint-report.xml
       - uses: yutailang0119/action-ktlint@v1.0.0
         with:
-          xml_path: build/ktlint-report-in-checkstyle-format.xml
+          xml_path: build/*.xml
 ```
 
 ## Author
