@@ -23,7 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: brew install ktlint
+      - run: |
+          curl -sSLO https://github.com/pinterest/ktlint/releases/download/0.41.0/ktlint && chmod a+x ktlint && sudo mv ktlint /usr/local/bin/
       - name: run ktlint
         run: |
           ktlint --reporter=checkstyle,output=build/ktlint-report.xml
