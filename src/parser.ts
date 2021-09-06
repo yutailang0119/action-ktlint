@@ -16,10 +16,10 @@ export async function parseXml(reportXml: string): Promise<Annotation[]> {
 
           const annotation = new Annotation(
             error.severity,
+            error.message,
             file.name,
             parseInt(error.line),
-            parseInt(error.column),
-            error.message
+            parseInt(error.column)
           )
           annotations.push(annotation)
         }
