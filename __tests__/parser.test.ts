@@ -13,20 +13,20 @@ test('test parse', () => {
     </file>
   </checkstyle>`
 
-  const annotation1 = new Annotation('error', 'Foo.kt', 3, 1, 'Unused import')
+  const annotation1 = new Annotation('error', 'Unused import', 'Foo.kt', 3, 1)
   const annotation2 = new Annotation(
     'error',
+    'Needless blank line(s)',
     'Foo.kt',
     22,
-    1,
-    'Needless blank line(s)'
+    1
   )
   const annotation3 = new Annotation(
     'error',
+    'Needless blank line(s)',
     'Bar.kts',
     11,
-    1,
-    'Needless blank line(s)'
+    1
   )
 
   expect(parseXml(xml)).resolves.toEqual([
