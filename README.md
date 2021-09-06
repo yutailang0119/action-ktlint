@@ -24,11 +24,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          curl -sSLO https://github.com/pinterest/ktlint/releases/download/0.41.0/ktlint && chmod a+x ktlint && sudo mv ktlint /usr/local/bin/
+          curl -sSLO https://github.com/pinterest/ktlint/releases/download/0.42.1/ktlint && chmod a+x ktlint && sudo mv ktlint /usr/local/bin/
       - name: run ktlint
         run: |
           ktlint --reporter=checkstyle,output=build/ktlint-report.xml
-      - uses: yutailang0119/action-ktlint@v1.0.0
+      - uses: yutailang0119/action-ktlint@v1
         with:
           xml_path: build/*.xml
 ```
