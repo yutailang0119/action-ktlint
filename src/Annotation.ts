@@ -8,7 +8,7 @@ export class Annotation {
     public message: string,
     public file: string,
     public line: number,
-    public column: number,
+    public column: number
   ) {
     this.severityLevel = severity === 'error' ? 'error' : 'warning'
   }
