@@ -6,23 +6,23 @@ test('test parse', () => {
   <checkstyle version="8.0">
     <file name="Foo.kt">
       <error line="3" column="1" severity="error" message="Unused import" source="no-unused-imports"/>
-      <error line="22" column="1" severity="error" message="Needless blank line(s)" source="no-consecutive-blank-lines"/>
+      <error line="22" column="1" severity="warning" message="Needless blank line(s)" source="no-consecutive-blank-lines"/>
     </file>
     <file name="Bar.kts">
-      <error line="11" column="1" severity="error" message="Needless blank line(s)" source="no-consecutive-blank-lines"/>
+      <error line="11" column="1" severity="warning" message="Needless blank line(s)" source="no-consecutive-blank-lines"/>
     </file>
   </checkstyle>`
 
   const annotation1 = new Annotation('error', 'Unused import', 'Foo.kt', 3, 1)
   const annotation2 = new Annotation(
-    'error',
+    'warning',
     'Needless blank line(s)',
     'Foo.kt',
     22,
     1
   )
   const annotation3 = new Annotation(
-    'error',
+    'warning',
     'Needless blank line(s)',
     'Bar.kts',
     11,
