@@ -1,6 +1,6 @@
+import fs from 'fs'
 import * as core from '@actions/core'
 import * as glob from '@actions/glob'
-import fs from 'fs'
 import {parseXml} from './parser'
 import {echoMessages} from './command'
 
