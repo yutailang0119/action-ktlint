@@ -1,7 +1,7 @@
 require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 7548:
+/***/ 6316:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -150,7 +150,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.parseXml = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const xml2js = __importStar(__nccwpck_require__(6189));
-const Annotation_1 = __nccwpck_require__(7548);
+const annotation_1 = __nccwpck_require__(6316);
 const parseXml = async (reportXml) => {
     const parser = new xml2js.Parser();
     const xml = await parser.parseStringPromise(reportXml);
@@ -161,7 +161,7 @@ const parseXml = async (reportXml) => {
                 const file = fileElement.$;
                 for (const errorElement of fileElement.error) {
                     const error = errorElement.$;
-                    const annotation = new Annotation_1.Annotation(error.severity, error.message, file.name, parseInt(error.line), parseInt(error.column));
+                    const annotation = new annotation_1.Annotation(error.severity, error.message, file.name, parseInt(error.line), parseInt(error.column));
                     annotations.push(annotation);
                 }
             }
@@ -9677,7 +9677,7 @@ function regExpEscape (s) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("assert");;
+module.exports = require("assert");
 
 /***/ }),
 
@@ -9685,7 +9685,7 @@ module.exports = require("assert");;
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("crypto");;
+module.exports = require("crypto");
 
 /***/ }),
 
@@ -9693,7 +9693,7 @@ module.exports = require("crypto");;
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("events");;
+module.exports = require("events");
 
 /***/ }),
 
@@ -9701,7 +9701,7 @@ module.exports = require("events");;
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("fs");;
+module.exports = require("fs");
 
 /***/ }),
 
@@ -9709,7 +9709,7 @@ module.exports = require("fs");;
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("os");;
+module.exports = require("os");
 
 /***/ }),
 
@@ -9717,7 +9717,7 @@ module.exports = require("os");;
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("path");;
+module.exports = require("path");
 
 /***/ }),
 
@@ -9725,7 +9725,7 @@ module.exports = require("path");;
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("stream");;
+module.exports = require("stream");
 
 /***/ }),
 
@@ -9733,7 +9733,7 @@ module.exports = require("stream");;
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("string_decoder");;
+module.exports = require("string_decoder");
 
 /***/ }),
 
@@ -9741,7 +9741,7 @@ module.exports = require("string_decoder");;
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("timers");;
+module.exports = require("timers");
 
 /***/ }),
 
@@ -9749,7 +9749,7 @@ module.exports = require("timers");;
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("util");;
+module.exports = require("util");
 
 /***/ })
 
@@ -9788,7 +9788,9 @@ module.exports = require("util");;
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
-/******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";/************************************************************************/
+/******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
+/******/ 	
+/************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
