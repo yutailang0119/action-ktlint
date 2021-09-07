@@ -56,7 +56,7 @@ const commandProperties = (annotation) => {
         col: `${annotation.column}`
     };
 };
-const echoMessages = async (annotations) => {
+const echoMessages = (annotations) => {
     for (const annotation of annotations) {
         command.issueCommand(annotation.severityLevel, commandProperties(annotation), annotation.message);
     }
@@ -111,7 +111,7 @@ async function run() {
             const xml = fs_1.default.readFileSync(file, 'utf-8');
             return await parser_1.parseXml(xml);
         }));
-        await command_1.echoMessages(annotationsList.flat());
+        command_1.echoMessages(annotationsList.flat());
     }
     catch (error) {
         core.setFailed(error.message);
