@@ -99,7 +99,7 @@ async function run() {
     try {
         const xmlPath = core.getInput('xml_path', { required: true });
         const globOptions = {
-            followSymbolicLinks: core.getInput('follow-symbolic-links').toUpperCase() !== 'FALSE'
+            followSymbolicLinks: core.getBooleanInput('follow-symbolic-links')
         };
         const globber = await glob.create(xmlPath, globOptions);
         const files = await globber.glob();
