@@ -30,7 +30,7 @@ jobs:
           ktlint --reporter=checkstyle,output=build/ktlint-report.xml
       - uses: yutailang0119/action-ktlint@v1
         with:
-          xml_path: build/*.xml
+          xml_path: build/*.xml # Support glob patterns by https://www.npmjs.com/package/@actions/glob
 ```
 
 ## Author
