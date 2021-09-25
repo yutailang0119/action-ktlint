@@ -1,7 +1,34 @@
+import path from 'path'
 import {Annotation} from '../src/annotation'
-import {parseXml} from '../src/parser'
+import {parseXmls, parseXml} from '../src/parser'
 
-test('test parse', () => {
+test('test parseXmls', () => {
+  const file = path.join(__dirname, 'resource', 'ktlint-report.xml')
+
+  const annotation1 = new Annotation('error', 'Unused import', 'Foo.kt', 3, 1)
+  const annotation2 = new Annotation(
+    'warning',
+    'Needless blank line(s)',
+    'Foo.kt',
+    22,
+    1
+  )
+  const annotation3 = new Annotation(
+    'warning',
+    'Needless blank line(s)',
+    'Bar.kts',
+    45,
+    1
+  )
+
+  expect(parseXmls([file])).resolves.toEqual([
+    annotation1,
+    annotation2,
+    annotation3
+  ])
+})
+
+test('test parseXml', () => {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
   <checkstyle version="8.0">
     <file name="Foo.kt">
