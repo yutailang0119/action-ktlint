@@ -15,7 +15,7 @@ test('test runs', () => {
     console.log(stdout)
     expect.assertions(1)
   } catch (err) {
-    console.log("stdout: ", err.stdout.toString())
+    console.log('stdout: ', err.stdout.toString())
     expect(err.status).toEqual(1)
   }
 })
