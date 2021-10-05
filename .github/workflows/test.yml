@@ -21,3 +21,4 @@ jobs:
       - uses: ./
         with:
           xml_path: ${{ github.workspace }}/__tests__/resource/ktlint-report.xml
+        continue-on-error: true
