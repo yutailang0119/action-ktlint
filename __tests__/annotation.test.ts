@@ -10,18 +10,22 @@ test('test Annotation.constructor with warning', () => {
   )
   expect(annotation.severityLevel).toEqual('warning')
   expect(annotation.message).toEqual('Needless blank line(s)')
-  expect(annotation.file).toEqual('Foo.kt')
-  expect(annotation.line).toEqual(22)
-  expect(annotation.column).toEqual(1)
+  expect(annotation.properties).toEqual({
+    file: 'Foo.kt',
+    startLine: 22,
+    startColumn: 1
+  })
 })
 
 test('test Annotation.constructor with error', () => {
   const annotation = new Annotation('error', 'Unused import', 'Foo.kt', 3, 1)
   expect(annotation.severityLevel).toEqual('error')
   expect(annotation.message).toEqual('Unused import')
-  expect(annotation.file).toEqual('Foo.kt')
-  expect(annotation.line).toEqual(3)
-  expect(annotation.column).toEqual(1)
+  expect(annotation.properties).toEqual({
+    file: 'Foo.kt',
+    startLine: 3,
+    startColumn: 1
+  })
 })
 
 test('test Annotation.constructor with other', () => {
