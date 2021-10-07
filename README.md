@@ -28,6 +28,7 @@ jobs:
       - name: run ktlint
         run: |
           ktlint --reporter=checkstyle,output=build/ktlint-report.xml
+        continue-on-error: true
       - uses: yutailang0119/action-ktlint@v1
         with:
           xml_path: build/*.xml # Support glob patterns by https://www.npmjs.com/package/@actions/glob
