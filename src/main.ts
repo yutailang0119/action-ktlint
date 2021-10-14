@@ -21,7 +21,8 @@ async function run(): Promise<void> {
       return annotation.severityLevel === 'error'
     })
     if (errors.length) {
-      throw Error('There are errors via ktlint')
+      const unit = errors.length === 1 ? 'error' : 'errors'
+      throw Error(`ktlint with ${errors.length} ${unit}`)
     }
   } catch (error) {
     core.setFailed(error.message)
