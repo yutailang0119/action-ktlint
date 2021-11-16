@@ -31,7 +31,7 @@ jobs:
         continue-on-error: true
       - uses: yutailang0119/action-ktlint@v1
         with:
-          xml-path: build/*.xml # Support glob patterns by https://www.npmjs.com/package/@actions/glob
+          report-path: build/*.xml # Support glob patterns by https://www.npmjs.com/package/@actions/glob
         continue-on-error: false # If annotations contain error of severity, action-ktlint exit 1.
 ```
 
