@@ -2,8 +2,8 @@ name: 'GitHub Action for ktlint'
 description: 'A tool to enforce Kotlin style and conventions'
 author: 'Yutaro Muta'
 inputs:
-  xml_path:
-    description: 'The file path of the XML lint report. Support glob patterns. e.g `build/*.xml`'
+  report-path:
+    description: 'The lint report file path. Support glob patterns. e.g `build/*.xml`'
     required: true
   follow-symbolic-links:
      description: 'Indicates whether to follow symbolic links'
