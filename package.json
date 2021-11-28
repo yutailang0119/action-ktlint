@@ -1,8 +1,8 @@
 {
   "name": "action-ktlint",
   "version": "2.0.0",
-  "private": true,
-  "description": "A tool to enforce Kotlin style and conventions",
+  "private": false,
+  "description": "GitHub Actions for ktlint",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -19,10 +19,10 @@
   },
   "keywords": [
     "actions",
-    "node",
-    "setup"
+    "ktlint",
+    "android"
   ],
-  "author": "Yutaro Muta",
+  "author": "yutailang0119",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.6.0",
