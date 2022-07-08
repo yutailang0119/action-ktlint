@@ -4,7 +4,8 @@ import {Annotation} from '../src/annotation'
 import {parseXmls, parseXml} from '../src/parser'
 
 test('test parseXmls', () => {
-  const file = path.join(__dirname, 'resource', 'ktlint-report.xml')
+  const file1 = path.join(__dirname, 'resource', 'ktlint-report.xml')
+  const file2 = path.join(__dirname, 'resource', 'empty-report.xml')
 
   const annotation1 = new Annotation('error', 'Unused import', 'Foo.kt', 3, 1)
   const annotation2 = new Annotation(
@@ -22,7 +23,7 @@ test('test parseXmls', () => {
     1
   )
 
-  expect(parseXmls([file])).resolves.toEqual([
+  expect(parseXmls([file1, file2])).resolves.toEqual([
     annotation1,
     annotation2,
     annotation3
