@@ -21,8 +21,9 @@ export const parseXml = async (text: string): Promise<Annotation[]> => {
     try {
       const annotations: Annotation[] = []
       for (const fileElement of xml.checkstyle.file) {
-        const file = fileElement.$
+        if (fileElement.error === undefined) continue
 
+        const file = fileElement.$
         for (const errorElement of fileElement.error) {
           const error = errorElement.$
 
