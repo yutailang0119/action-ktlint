@@ -30,7 +30,7 @@ test('test parseXmls', () => {
   ])
 })
 
-test('test parseXml', () => {
+test('test parseXml with error', () => {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
   <checkstyle version="8.0">
     <file name="Foo.kt">
@@ -63,4 +63,24 @@ test('test parseXml', () => {
     annotation2,
     annotation3
   ])
+})
+
+test('test parseXml without file', () => {
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+  <checkstyle version="8.0">
+  </checkstyle>`
+
+  expect(parseXml(xml)).resolves.toEqual([])
+})
+
+test('test parseXml without error', () => {
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+  <checkstyle version="8.0">
+    <file name="Foo.kt">
+    </file>
+    <file name="Bar.kts">
+    </file>
+  </checkstyle>`
+
+  expect(parseXml(xml)).resolves.toEqual([])
 })
