@@ -179,10 +179,14 @@ exports.parseXmls = parseXmls;
 const parseXml = async (text) => {
     const parser = new xml2js.Parser();
     const xml = await parser.parseStringPromise(text);
+    if (xml.checkstyle.file === undefined)
+        return [];
     return new Promise(resolve => {
         try {
             const annotations = [];
             for (const fileElement of xml.checkstyle.file) {
+                if (fileElement.error === undefined)
+                    continue;
                 const file = fileElement.$;
                 for (const errorElement of fileElement.error) {
                     const error = errorElement.$;
