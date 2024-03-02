@@ -9,7 +9,7 @@ inputs:
      description: 'Indicates whether to follow symbolic links'
      default: true
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
 branding:
   icon: 'check-square'
