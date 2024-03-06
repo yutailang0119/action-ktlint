@@ -58,7 +58,7 @@ test('test parseXml with error', () => {
     1
   )
 
-  expect(parseXml(xml)).resolves.toEqual([
+  expect(parseXml(xml, false)).resolves.toEqual([
     annotation1,
     annotation2,
     annotation3
@@ -70,7 +70,7 @@ test('test parseXml without file', () => {
   <checkstyle version="8.0">
   </checkstyle>`
 
-  expect(parseXml(xml)).resolves.toEqual([])
+  expect(parseXml(xml, false)).resolves.toEqual([])
 })
 
 test('test parseXml without error', () => {
@@ -82,5 +82,5 @@ test('test parseXml without error', () => {
     </file>
   </checkstyle>`
 
-  expect(parseXml(xml)).resolves.toEqual([])
+  expect(parseXml(xml, false)).resolves.toEqual([])
 })
