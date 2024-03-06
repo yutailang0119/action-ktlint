@@ -3,11 +3,14 @@ import * as core from '@actions/core'
 import * as xml2js from 'xml2js'
 import {Annotation} from './annotation'
 
-export const parseXmls = async (files: string[]): Promise<Annotation[]> => {
+export const parseXmls = async (
+  files: string[],
+  ignoreWarnings: boolean
+): Promise<Annotation[]> => {
   const list = await Promise.all(
     files.map(async file => {
       const xml = fs.readFileSync(file, 'utf-8')
-      return await parseXml(xml, false)
+      return await parseXml(xml, ignoreWarnings)
     })
   )
   return list.flat()

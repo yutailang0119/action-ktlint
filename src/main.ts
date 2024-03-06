@@ -12,7 +12,7 @@ async function run(): Promise<void> {
     const globber = await glob.create(reportPath, globOptions)
     const reports = await globber.glob()
 
-    const annotations = await parseXmls(reports)
+    const annotations = await parseXmls(reports, false)
 
     echoMessages(annotations)
 
