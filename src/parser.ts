@@ -7,13 +7,16 @@ export const parseXmls = async (files: string[]): Promise<Annotation[]> => {
   const list = await Promise.all(
     files.map(async file => {
       const xml = fs.readFileSync(file, 'utf-8')
-      return await parseXml(xml)
+      return await parseXml(xml, false)
     })
   )
   return list.flat()
 }
 
-export const parseXml = async (text: string): Promise<Annotation[]> => {
+export const parseXml = async (
+  text: string,
+  ignoreWarnings: boolean
+): Promise<Annotation[]> => {
   const parser = new xml2js.Parser()
   const xml = await parser.parseStringPromise(text)
   if (xml.checkstyle.file === undefined) return []
@@ -37,7 +40,15 @@ export const parseXml = async (text: string): Promise<Annotation[]> => {
           annotations.push(annotation)
         }
       }
-      resolve(annotations)
+      if (ignoreWarnings === true) {
+        resolve(
+          annotations.filter(annotation => {
+            return annotation.severityLevel !== 'warning'
+          })
+        )
+      } else {
+        resolve(annotations)
+      }
     } catch (error) {
       core.debug(`failed to read ${error}`)
     }
