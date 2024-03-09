@@ -9,10 +9,12 @@ async function run(): Promise<void> {
     const globOptions = {
       followSymbolicLinks: core.getBooleanInput('follow-symbolic-links')
     }
+    const ignoreWarnings = core.getBooleanInput('ignore-warnings')
+
     const globber = await glob.create(reportPath, globOptions)
     const reports = await globber.glob()
 
-    const annotations = await parseXmls(reports, false)
+    const annotations = await parseXmls(reports, ignoreWarnings)
 
     echoMessages(annotations)
 
