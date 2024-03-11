@@ -23,11 +23,20 @@ test('test parseXmls', () => {
     1
   )
 
-  expect(parseXmls([file1, file2])).resolves.toEqual([
+  expect(parseXmls([file1, file2], false)).resolves.toEqual([
     annotation1,
     annotation2,
     annotation3
   ])
+})
+
+test('test parseXmls and ignore warnings', () => {
+  const file1 = path.join(__dirname, 'resource', 'ktlint-report.xml')
+  const file2 = path.join(__dirname, 'resource', 'empty-report.xml')
+
+  const annotation1 = new Annotation('error', 'Unused import', 'Foo.kt', 3, 1)
+
+  expect(parseXmls([file1, file2], true)).resolves.toEqual([annotation1])
 })
 
 test('test parseXml with error', () => {
@@ -58,7 +67,7 @@ test('test parseXml with error', () => {
     1
   )
 
-  expect(parseXml(xml)).resolves.toEqual([
+  expect(parseXml(xml, false)).resolves.toEqual([
     annotation1,
     annotation2,
     annotation3
@@ -70,7 +79,7 @@ test('test parseXml without file', () => {
   <checkstyle version="8.0">
   </checkstyle>`
 
-  expect(parseXml(xml)).resolves.toEqual([])
+  expect(parseXml(xml, false)).resolves.toEqual([])
 })
 
 test('test parseXml without error', () => {
@@ -82,5 +91,5 @@ test('test parseXml without error', () => {
     </file>
   </checkstyle>`
 
-  expect(parseXml(xml)).resolves.toEqual([])
+  expect(parseXml(xml, false)).resolves.toEqual([])
 })
