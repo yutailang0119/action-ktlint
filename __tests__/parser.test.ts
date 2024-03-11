@@ -30,6 +30,15 @@ test('test parseXmls', () => {
   ])
 })
 
+test('test parseXmls and ignore warnings', () => {
+  const file1 = path.join(__dirname, 'resource', 'ktlint-report.xml')
+  const file2 = path.join(__dirname, 'resource', 'empty-report.xml')
+
+  const annotation1 = new Annotation('error', 'Unused import', 'Foo.kt', 3, 1)
+
+  expect(parseXmls([file1, file2], true)).resolves.toEqual([annotation1])
+})
+
 test('test parseXml with error', () => {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
   <checkstyle version="8.0">
