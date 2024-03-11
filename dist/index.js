@@ -109,9 +109,10 @@ async function run() {
         const globOptions = {
             followSymbolicLinks: core.getBooleanInput('follow-symbolic-links')
         };
+        const ignoreWarnings = core.getBooleanInput('ignore-warnings');
         const globber = await glob.create(reportPath, globOptions);
         const reports = await globber.glob();
-        const annotations = await (0, parser_1.parseXmls)(reports);
+        const annotations = await (0, parser_1.parseXmls)(reports, ignoreWarnings);
         (0, command_1.echoMessages)(annotations);
         const errors = annotations.filter(annotation => {
             return annotation.severityLevel === 'error';
@@ -168,15 +169,15 @@ const fs_1 = __importDefault(__nccwpck_require__(7147));
 const core = __importStar(__nccwpck_require__(2186));
 const xml2js = __importStar(__nccwpck_require__(6189));
 const annotation_1 = __nccwpck_require__(6316);
-const parseXmls = async (files) => {
+const parseXmls = async (files, ignoreWarnings) => {
     const list = await Promise.all(files.map(async (file) => {
         const xml = fs_1.default.readFileSync(file, 'utf-8');
-        return await (0, exports.parseXml)(xml);
+        return await (0, exports.parseXml)(xml, ignoreWarnings);
     }));
     return list.flat();
 };
 exports.parseXmls = parseXmls;
-const parseXml = async (text) => {
+const parseXml = async (text, ignoreWarnings) => {
     const parser = new xml2js.Parser();
     const xml = await parser.parseStringPromise(text);
     if (xml.checkstyle.file === undefined)
@@ -194,7 +195,14 @@ const parseXml = async (text) => {
                     annotations.push(annotation);
                 }
             }
-            resolve(annotations);
+            if (ignoreWarnings === true) {
+                resolve(annotations.filter(annotation => {
+                    return annotation.severityLevel !== 'warning';
+                }));
+            }
+            else {
+                resolve(annotations);
+            }
         }
         catch (error) {
             core.debug(`failed to read ${error}`);
