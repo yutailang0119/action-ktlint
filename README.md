@@ -32,6 +32,7 @@ jobs:
       - uses: yutailang0119/action-ktlint@v3
         with:
           report-path: build/*.xml # Support glob patterns by https://www.npmjs.com/package/@actions/glob
+          ignore-warnings: true # Ignore Lint Warnings
         continue-on-error: false # If annotations contain error of severity, action-ktlint exit 1.
 ```
 
