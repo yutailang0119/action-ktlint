@@ -1,23 +1,21 @@
-name: The name of your action here
-description: Provide a description here
-author: Your name or organization here
+name: GitHub Action for ktlint
+description: A tool to enforce Kotlin style and conventions
+author: yutailang0119
 
-# Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
-  icon: heart
-  color: red
+  icon: check-square
+  color: purple
 
-# Define your inputs here.
 inputs:
-  milliseconds:
-    description: Your input description here
+  report-path:
+    description: The lint report file path. Support glob patterns. e.g `build/*.xml`
     required: true
-    default: '1000'
-
-# Define your outputs here.
-outputs:
-  time:
-    description: Your output description here
+  follow-symbolic-links:
+     description: Indicates whether to follow symbolic links
+     default: 'true'
+  ignore-warnings:
+    description: Ignore Lint Warnings
+    default: 'false'
 
 runs:
   using: node20
