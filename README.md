@@ -1,40 +1,41 @@
-<a href="https://github.com/yutailang0119/action-textlint/actions"><img alt="action-textlint status" src="https://github.com/yutailang0119/action-textlint/workflows/build-test/badge.svg"></a>
+<a href="https://github.com/yutailang0119/action-ktlint/actions"><img alt="action-ktlint status" src="https://github.com/yutailang0119/action-ktlint/workflows/build-test/badge.svg"></a>
 
-# GitHub Action for textlint
+# GitHub Action for ktlint
 
-This Action generates annotations from [textlint](https://textlint.github.io) Report JSON.  
-Support textlint to [v12.2.0](https://github.com/textlint/textlint/releases/tag/v12.2.0) or later.  
+This Action generates annotations from [ktlint](https://ktlint.github.io) Report XML.
 
 ## Usage
 
-An example workflow(.github/workflows/textlint.yml) to executing textlint follows:
+An example workflow(.github/workflows/ktlint.yml) to executing ktlint follows:
 
 ```yml
-name: textlint
+name: ktlint
 
 on:
   pull_request:
     paths:
-      - .github/workflows/textlint.yml
-      - 'docs/**/*.md'
+      - .github/workflows/ktlint.yml
+      - 'src/**/*.kt'
+      - '**.kts'
 
 jobs:
-  textlint:
+  ktlint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - run: npm install
-      - name: run textlint
-        id: run-textlint
+      - run: |
+          curl -sSLO https://github.com/pinterest/ktlint/releases/download/1.2.1/ktlint && chmod a+x ktlint && sudo mv ktlint /usr/local/bin/
+      - name: run ktlint
         run: |
-          echo "textlint-output=$(./node_modules/.bin/textlint 'docs/**/*.md' -f json || true)" >> "$GITHUB_OUTPUT"
-      - uses: yutailang0119/action-textlint@v4
+          ktlint --reporter=checkstyle,output=build/ktlint-report.xml
+        continue-on-error: true
+      - uses: yutailang0119/action-ktlint@v4
         with:
-          textlint-output: ${{ steps.run-textlint.outputs.textlint-output }}
+          report-path: build/*.xml # Support glob patterns by https://www.npmjs.com/package/@actions/glob
           ignore-warnings: true # Ignore Lint Warnings
-        continue-on-error: false # If annotations contain error of severity, action-textlint exit 1.
+        continue-on-error: false # If annotations contain error of severity, action-ktlint exit 1.
 ```
 
 ## Author
@@ -47,4 +48,4 @@ jobs:
 
 ## License
 
-action-textlint is available under the MIT license. See [the LICENSE file](./LICENSE) for more info.
+action-ktlint is available under the MIT license. See [the LICENSE file](./LICENSE) for more info.
