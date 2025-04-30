@@ -7,7 +7,7 @@ import { parseXmls, parseXml } from '../src/parser.js'
 describe('parser.ts', () => {
   const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-  it('test parseXmls', () => {
+  it('test parseXmls', async () => {
     const file1 = path.join(__dirname, 'resource', 'ktlint-report.xml')
     const file2 = path.join(__dirname, 'resource', 'empty-report.xml')
 
@@ -27,23 +27,23 @@ describe('parser.ts', () => {
       1
     )
 
-    expect(parseXmls([file1, file2], false)).resolves.toEqual([
+    await expect(parseXmls([file1, file2], false)).resolves.toEqual([
       annotation1,
       annotation2,
       annotation3
     ])
   })
 
-  it('test parseXmls and ignore warnings', () => {
+  it('test parseXmls and ignore warnings', async () => {
     const file1 = path.join(__dirname, 'resource', 'ktlint-report.xml')
     const file2 = path.join(__dirname, 'resource', 'empty-report.xml')
 
     const annotation1 = new Annotation('error', 'Unused import', 'Foo.kt', 3, 1)
 
-    expect(parseXmls([file1, file2], true)).resolves.toEqual([annotation1])
+    await expect(parseXmls([file1, file2], true)).resolves.toEqual([annotation1])
   })
 
-  it('test parseXml with error', () => {
+  it('test parseXml with error', async () => {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
     <checkstyle version="8.0">
       <file name="Foo.kt">
@@ -71,22 +71,22 @@ describe('parser.ts', () => {
       1
     )
 
-    expect(parseXml(xml, false)).resolves.toEqual([
+    await expect(parseXml(xml, false)).resolves.toEqual([
       annotation1,
       annotation2,
       annotation3
     ])
   })
 
-  it('test parseXml without file', () => {
+  it('test parseXml without file', async () => {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
     <checkstyle version="8.0">
     </checkstyle>`
 
-    expect(parseXml(xml, false)).resolves.toEqual([])
+    await expect(parseXml(xml, false)).resolves.toEqual([])
   })
 
-  it('test parseXml without error', () => {
+  it('test parseXml without error', async () => {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
     <checkstyle version="8.0">
       <file name="Foo.kt">
@@ -95,6 +95,6 @@ describe('parser.ts', () => {
       </file>
     </checkstyle>`
 
-    expect(parseXml(xml, false)).resolves.toEqual([])
+    await expect(parseXml(xml, false)).resolves.toEqual([])
   })
 })
