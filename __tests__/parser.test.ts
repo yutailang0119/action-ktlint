@@ -40,7 +40,9 @@ describe('parser.ts', () => {
 
     const annotation1 = new Annotation('error', 'Unused import', 'Foo.kt', 3, 1)
 
-    await expect(parseXmls([file1, file2], true)).resolves.toEqual([annotation1])
+    await expect(parseXmls([file1, file2], true)).resolves.toEqual([
+      annotation1
+    ])
   })
 
   it('test parseXml with error', async () => {
