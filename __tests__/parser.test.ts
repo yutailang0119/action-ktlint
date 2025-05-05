@@ -11,7 +11,7 @@ describe('parser.ts', () => {
     jest.resetAllMocks()
   })
 
-  it('test parseXmls', async () => {
+  it('parseXmls', async () => {
     const file1 = path.join(__dirname, 'resource', 'ktlint-report.xml')
     const file2 = path.join(__dirname, 'resource', 'empty-report.xml')
 
@@ -38,7 +38,7 @@ describe('parser.ts', () => {
     ])
   })
 
-  it('test parseXmls and ignore warnings', async () => {
+  it('parseXmls and ignore warnings', async () => {
     const file1 = path.join(__dirname, 'resource', 'ktlint-report.xml')
     const file2 = path.join(__dirname, 'resource', 'empty-report.xml')
 
@@ -49,7 +49,7 @@ describe('parser.ts', () => {
     ])
   })
 
-  it('test parseXml with error', async () => {
+  it('parseXml with error', async () => {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
     <checkstyle version="8.0">
       <file name="Foo.kt">
@@ -84,7 +84,7 @@ describe('parser.ts', () => {
     ])
   })
 
-  it('test parseXml without file', async () => {
+  it('parseXml without file', async () => {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
     <checkstyle version="8.0">
     </checkstyle>`
@@ -92,7 +92,7 @@ describe('parser.ts', () => {
     await expect(parseXml(xml, false)).resolves.toEqual([])
   })
 
-  it('test parseXml without error', async () => {
+  it('parseXml without error', async () => {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
     <checkstyle version="8.0">
       <file name="Foo.kt">

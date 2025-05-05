@@ -6,7 +6,7 @@ describe('annotation.ts', () => {
     jest.resetAllMocks()
   })
 
-  it('test Annotation.constructor with warning', () => {
+  it('Annotation.constructor with warning', () => {
     const annotation = new Annotation(
       'warning',
       'Needless blank line(s)',
@@ -23,7 +23,7 @@ describe('annotation.ts', () => {
     })
   })
 
-  it('test Annotation.constructor with error', () => {
+  it('Annotation.constructor with error', () => {
     const annotation = new Annotation('error', 'Unused import', 'Foo.kt', 3, 1)
     expect(annotation.severityLevel).toEqual('error')
     expect(annotation.message).toEqual('Unused import')
@@ -34,7 +34,7 @@ describe('annotation.ts', () => {
     })
   })
 
-  it('test Annotation.constructor with other', () => {
+  it('Annotation.constructor with other', () => {
     const annotation = new Annotation('', '', 'Bar.kt', 0, 0)
     expect(annotation.severityLevel).toEqual('warning')
   })

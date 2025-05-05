@@ -28,7 +28,7 @@ describe('main.ts', () => {
     jest.resetAllMocks()
   })
 
-  it('test runs', async () => {
+  it('runs', async () => {
     core.getInput.mockImplementation((name) => {
       switch (name) {
         case 'report-path':
@@ -42,7 +42,7 @@ describe('main.ts', () => {
     expect(core.setFailed).toHaveBeenNthCalledWith(1, 'ktlint with 1 error')
   })
 
-  it('test runs without error', async () => {
+  it('runs without error', async () => {
     core.getInput.mockImplementation((name) => {
       switch (name) {
         case 'report-path':
