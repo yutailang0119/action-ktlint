@@ -1,8 +1,9 @@
-<a href="https://github.com/yutailang0119/action-ktlint/actions"><img alt="action-ktlint status" src="https://github.com/yutailang0119/action-ktlint/workflows/build-test/badge.svg"></a>
-
 # GitHub Action for ktlint
 
-This Action generates annotations from [ktlint](https://ktlint.github.io) Report XML.
+<a href="https://github.com/yutailang0119/action-ktlint/actions"><img alt="action-ktlint status" src="https://github.com/yutailang0119/action-ktlint/workflows/build-test/badge.svg"></a>
+
+This Action generates annotations from [ktlint](https://ktlint.github.io) Report
+XML.
 
 ## Usage
 
@@ -44,8 +45,11 @@ jobs:
 
 ## References
 
-- Generated from [actions/typescript-action](https://github.com/actions/typescript-action) as template.
+- Generated from
+  [actions/typescript-action](https://github.com/actions/typescript-action) as
+  template.
 
 ## License
 
-action-ktlint is available under the MIT license. See [the LICENSE file](./LICENSE) for more info.
+action-ktlint is available under the MIT license. See
+[the LICENSE file](./LICENSE) for more info.

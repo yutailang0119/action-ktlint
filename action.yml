@@ -1,19 +1,23 @@
-name: 'GitHub Action for ktlint'
-description: 'A tool to enforce Kotlin style and conventions'
-author: 'yutailang0119'
+name: GitHub Action for ktlint
+description: A tool to enforce Kotlin style and conventions
+author: yutailang0119
+
+branding:
+  icon: check-square
+  color: purple
+
 inputs:
   report-path:
-    description: 'The lint report file path. Support glob patterns. e.g `build/*.xml`'
+    description:
+      The lint report file path. Support glob patterns. e.g `build/*.xml`
     required: true
   follow-symbolic-links:
-     description: 'Indicates whether to follow symbolic links'
-     default: 'true'
+    description: Indicates whether to follow symbolic links
+    default: 'true'
   ignore-warnings:
-    description: 'Ignore Lint Warnings'
+    description: Ignore Lint Warnings
     default: 'false'
+
 runs:
-  using: 'node20'
-  main: 'dist/index.js'
-branding:
-  icon: 'check-square'
-  color: 'purple'
+  using: node20
+  main: dist/index.js
