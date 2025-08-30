@@ -1,6 +1,6 @@
 # GitHub Action for ktlint
 
-<a href="https://github.com/yutailang0119/action-ktlint/actions"><img alt="action-ktlint status" src="https://github.com/yutailang0119/action-ktlint/workflows/build-test/badge.svg"></a>
+![CI](https://github.com/yutailang0119/action-ktlint/actions/workflows/ci.yml/badge.svg)
 
 This Action generates annotations from [ktlint](https://ktlint.github.io) Report
 XML.
