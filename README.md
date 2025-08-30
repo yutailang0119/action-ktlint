@@ -1,6 +1,6 @@
 # GitHub Action for ktlint
 
-<a href="https://github.com/yutailang0119/action-ktlint/actions"><img alt="action-ktlint status" src="https://github.com/yutailang0119/action-ktlint/workflows/build-test/badge.svg"></a>
+![CI](https://github.com/yutailang0119/action-ktlint/actions/workflows/ci.yml/badge.svg)
 
 This Action generates annotations from [ktlint](https://ktlint.github.io) Report
 XML.
@@ -27,7 +27,7 @@ jobs:
         with:
           fetch-depth: 1
       - run: |
-          curl -sSLO https://github.com/pinterest/ktlint/releases/download/1.2.1/ktlint && chmod a+x ktlint && sudo mv ktlint /usr/local/bin/
+          curl -sSLO https://github.com/pinterest/ktlint/releases/download/1.7.1/ktlint && chmod a+x ktlint && sudo mv ktlint /usr/local/bin/
       - name: run ktlint
         run: |
           ktlint --reporter=checkstyle,output=build/ktlint-report.xml
