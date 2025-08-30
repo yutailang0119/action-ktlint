@@ -27,7 +27,7 @@ jobs:
         with:
           fetch-depth: 1
       - run: |
-          curl -sSLO https://github.com/pinterest/ktlint/releases/download/1.2.1/ktlint && chmod a+x ktlint && sudo mv ktlint /usr/local/bin/
+          curl -sSLO https://github.com/pinterest/ktlint/releases/download/1.7.1/ktlint && chmod a+x ktlint && sudo mv ktlint /usr/local/bin/
       - name: run ktlint
         run: |
           ktlint --reporter=checkstyle,output=build/ktlint-report.xml
