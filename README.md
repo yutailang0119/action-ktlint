@@ -32,7 +32,7 @@ jobs:
         run: |
           ktlint --reporter=checkstyle,output=build/ktlint-report.xml
         continue-on-error: true
-      - uses: yutailang0119/action-ktlint@v4
+      - uses: yutailang0119/action-ktlint@v6
         with:
           report-path: build/*.xml # Support glob patterns by https://www.npmjs.com/package/@actions/glob
           ignore-warnings: true # Ignore Lint Warnings
