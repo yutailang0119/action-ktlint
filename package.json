@@ -1,7 +1,7 @@
 {
   "name": "action-ktlint",
   "description": "GitHub Actions for ktlint",
-  "version": "4.0.0",
+  "version": "6.0.0",
   "author": "yutailang0119",
   "type": "module",
   "private": false,
